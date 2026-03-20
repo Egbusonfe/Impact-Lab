@@ -1,10 +1,104 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Current Date and Time</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Lab College Edition</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Current Date and Time (UTC)</h1>
-    <p>2026-03-20 15:27:46</p>
+    <nav>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#who-its-for">Who It's For</a></li>
+            <li><a href="#modules">Modules</a></li>
+            <li><a href="#journey-timeline">Journey Timeline</a></li>
+            <li><a href="#outcomes">Outcomes</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#footer">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="hero">
+        <h1>Welcome to Impact Lab College Edition</h1>
+        <p>Transform your future with our innovative programs.</p>
+    </section>
+
+    <section id="who-its-for">
+        <h2>Who It's For</h2>
+        <p>This program is designed for aspiring students who want to make a difference.</p>
+    </section>
+
+    <section id="modules">
+        <h2>Modules</h2>
+        <ul>
+            <li>Module 1: Introduction</li>
+            <li>Module 2: Intermediate Skills</li>
+            <li>Module 3: Advanced Concepts</li>
+        </ul>
+    </section>
+
+    <section id="journey-timeline">
+        <h2>Journey Timeline</h2>
+        <p>Your journey starts here and progresses through various milestones.</p>
+    </section>
+
+    <section id="outcomes">
+        <h2>Outcomes</h2>
+        <p>By the end of this program, you will be equipped with essential skills.</p>
+    </section>
+
+    <section id="pricing">
+        <h2>Pricing</h2>
+        <p>We offer competitive pricing to make education accessible.</p>
+    </section>
+
+    <section id="faq">
+        <h2>FAQ</h2>
+        <p>Frequently asked questions about the program and enrollment.</p>
+    </section>
+
+    <footer id="footer">
+        <p>&copy; 2026 Impact Lab College Edition. All rights reserved.</p>
+    </footer>
+
+    <div id="enrollment-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <form id="enrollment-form">
+                <h2>Enrollment Form</h2>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <input type="submit" value="Enroll">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('enrollment-modal');
+        const closeButton = document.querySelector('.close-button');
+
+        // Open modal
+        function openModal() {
+            modal.style.display = 'block';
+        }
+
+        // Close modal
+        closeButton.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
