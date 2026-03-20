@@ -1,104 +1,1140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impact Lab College Edition</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Impact Lab — College Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink: #0f1117;
+    --cream: #f5f0e8;
+    --warm: #f5f0e8;
+    --gold: #c9952a;
+    --teal: #1a5f6e;
+    --teal-light: #2a8fa3;
+    --rust: #b84a2e;
+    --mist: #e8f2f5;
+    --text-muted: #5a6070;
+    --radius: 4px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ink);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(15,17,23,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,149,42,0.2);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 900;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+  }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a {
+    text-decoration: none; color: var(--cream);
+    font-size: 0.88rem; font-weight: 500; letter-spacing: 0.04em;
+    opacity: 0.8; transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .btn-enroll {
+    background: var(--gold); color: var(--ink);
+    padding: 0.55rem 1.4rem; border-radius: 2px;
+    font-weight: 600; font-size: 0.85rem; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    cursor: pointer; border: none;
+  }
+  .btn-enroll:hover { background: #daa830; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 3rem 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 70% 40%, rgba(26,95,110,0.35) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 40% at 15% 70%, rgba(201,149,42,0.15) 0%, transparent 60%),
+      var(--ink);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image:
+      linear-gradient(rgba(245,240,232,0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,240,232,0.5) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content { position: relative; max-width: 760px; }
+  .hero-eyebrow {
+    display: inline-block;
+    background: rgba(201,149,42,0.15);
+    border: 1px solid rgba(201,149,42,0.4);
+    color: var(--gold);
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 2px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1.05; font-weight: 900;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease 0.15s both;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-size: 1.15rem; line-height: 1.7; color: rgba(245,240,232,0.75);
+    max-width: 540px; margin-bottom: 2.5rem;
+    animation: fadeUp 0.8s ease 0.3s both;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.8s ease 0.45s both; }
+  .btn-primary {
+    background: var(--gold); color: var(--ink);
+    padding: 0.9rem 2.2rem; font-size: 0.95rem; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    border: none; border-radius: 2px; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: #daa830; transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--cream);
+    border: 1px solid rgba(245,240,232,0.4);
+    padding: 0.9rem 2.2rem; font-size: 0.95rem; font-weight: 500;
+    border-radius: 2px; cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--cream); color: #fff; }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    animation: fadeUp 0.8s ease 0.6s both;
+  }
+  .hero-stat { }
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem; font-weight: 900; color: var(--gold);
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 0.8rem; color: rgba(245,240,232,0.55);
+    letter-spacing: 0.06em; text-transform: uppercase; margin-top: 0.3rem;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 6rem 3rem; }
+  .section-eyebrow {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; line-height: 1.15;
+    margin-bottom: 1.2rem;
+  }
+  .section-lead {
+    font-size: 1.05rem; line-height: 1.7;
+    color: rgba(245,240,232,0.7); max-width: 600px;
+  }
+
+  /* ── WHO IT'S FOR ── */
+  .who { background: var(--cream); color: var(--ink); }
+  .who .section-eyebrow { color: var(--teal); }
+  .who .section-lead { color: rgba(15,17,23,0.65); }
+  .who-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .who-card {
+    background: white; border-radius: 4px;
+    padding: 1.8rem; border-top: 3px solid var(--teal);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  }
+  .who-card-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .who-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.5rem; }
+  .who-card p { font-size: 0.9rem; line-height: 1.6; color: rgba(15,17,23,0.65); }
+
+  /* ── MODULES ── */
+  .modules { background: var(--ink); }
+  .modules-intro { max-width: 700px; margin-bottom: 4rem; }
+  .module-list { display: flex; flex-direction: column; gap: 1.2rem; }
+  .module-item {
+    display: grid; grid-template-columns: 3rem 1fr auto;
+    gap: 1.5rem; align-items: start;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px; padding: 1.8rem 2rem;
+    transition: background 0.2s, border-color 0.2s;
+    cursor: default;
+  }
+  .module-item:hover {
+    background: rgba(201,149,42,0.06);
+    border-color: rgba(201,149,42,0.3);
+  }
+  .module-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 900; color: var(--gold);
+    opacity: 0.6; line-height: 1;
+  }
+  .module-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; margin-bottom: 0.35rem;
+  }
+  .module-body p { font-size: 0.88rem; color: rgba(245,240,232,0.6); line-height: 1.6; }
+  .module-outcomes {
+    display: flex; flex-direction: column; gap: 0.35rem; min-width: 200px;
+  }
+  .module-tag {
+    background: rgba(26,95,110,0.25); color: var(--teal-light);
+    border: 1px solid rgba(26,95,110,0.4);
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em;
+    padding: 0.2rem 0.6rem; border-radius: 2px; white-space: nowrap;
+    display: inline-block; width: fit-content;
+  }
+
+  /* ── JOURNEY ── */
+  .journey { background: #0a0c11; }
+  .journey-track {
+    display: flex; gap: 0; margin-top: 3.5rem;
+    overflow-x: auto; padding-bottom: 1rem;
+  }
+  .journey-step {
+    flex: 0 0 160px; padding: 1.5rem 1.2rem;
+    border-top: 3px solid rgba(255,255,255,0.1);
+    position: relative;
+  }
+  .journey-step.active { border-top-color: var(--gold); }
+  .journey-step-label {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem;
+  }
+  .journey-step-title {
+    font-size: 0.85rem; font-weight: 600; line-height: 1.4;
+    margin-bottom: 0.5rem;
+  }
+  .journey-step-duration {
+    font-size: 0.72rem; color: rgba(245,240,232,0.45);
+  }
+  .journey-includes {
+    margin-top: 3rem; padding: 2rem;
+    background: rgba(201,149,42,0.08);
+    border: 1px solid rgba(201,149,42,0.2); border-radius: 4px;
+  }
+  .journey-includes h4 {
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+  }
+  .includes-pills {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+  }
+  .includes-pill {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    font-size: 0.8rem; padding: 0.35rem 0.9rem; border-radius: 2px;
+    color: rgba(245,240,232,0.8);
+  }
+
+  /* ── OUTCOMES ── */
+  .outcomes { background: var(--teal); color: white; }
+  .outcomes .section-eyebrow { color: var(--gold); }
+  .outcomes-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem; margin-top: 3rem;
+  }
+  .outcome-card {
+    border-top: 2px solid rgba(255,255,255,0.25);
+    padding-top: 1.5rem;
+  }
+  .outcome-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 900; color: var(--gold); line-height: 1;
+  }
+  .outcome-label { font-size: 0.88rem; line-height: 1.5; margin-top: 0.4rem; opacity: 0.85; }
+
+  /* ── PRICING ── */
+  .pricing { background: var(--cream); color: var(--ink); }
+  .pricing .section-eyebrow { color: var(--teal); }
+  .pricing-cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; margin-top: 3rem; max-width: 900px;
+  }
+  .pricing-card {
+    background: white; border-radius: 4px; padding: 2.5rem;
+    border: 2px solid transparent;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    position: relative; transition: transform 0.2s;
+  }
+  .pricing-card:hover { transform: translateY(-4px); }
+  .pricing-card.featured {
+    border-color: var(--teal);
+    box-shadow: 0 4px 32px rgba(26,95,110,0.2);
+  }
+  .pricing-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--teal); color: white;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.3rem 1rem; border-radius: 2px;
+    white-space: nowrap;
+  }
+  .pricing-name {
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 0.8rem;
+  }
+  .pricing-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 900; line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .pricing-price span { font-size: 1.2rem; vertical-align: top; margin-top: 0.5rem; display: inline-block; }
+  .pricing-period { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+  .pricing-features { list-style: none; margin-bottom: 2rem; }
+  .pricing-features li {
+    display: flex; gap: 0.6rem; align-items: flex-start;
+    font-size: 0.88rem; line-height: 1.5; margin-bottom: 0.7rem;
+    color: rgba(15,17,23,0.75);
+  }
+  .pricing-features li::before { content: "✓"; color: var(--teal); font-weight: 700; flex-shrink: 0; }
+  .btn-teal {
+    width: 100%; background: var(--teal); color: white;
+    padding: 0.85rem; font-size: 0.9rem; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    border: none; border-radius: 2px; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-teal:hover { background: var(--teal-light); transform: translateY(-1px); }
+  .btn-teal-outline {
+    width: 100%; background: transparent; color: var(--teal);
+    border: 2px solid var(--teal);
+    padding: 0.85rem; font-size: 0.9rem; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    border-radius: 2px; cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-teal-outline:hover { background: var(--teal); color: white; }
+
+  /* ── MODAL OVERLAY ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(10,12,17,0.88);
+    backdrop-filter: blur(8px);
+    z-index: 200; align-items: center; justify-content: center;
+    padding: 2rem;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: white; color: var(--ink);
+    border-radius: 6px; width: 100%; max-width: 520px;
+    max-height: 90vh; overflow-y: auto;
+    padding: 3rem; position: relative;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.4);
+    animation: modalIn 0.3s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .modal-close {
+    position: absolute; top: 1.2rem; right: 1.5rem;
+    background: none; border: none; cursor: pointer;
+    font-size: 1.5rem; color: rgba(15,17,23,0.4);
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--ink); }
+  .modal h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem; margin-bottom: 0.4rem;
+  }
+  .modal-sub { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 2rem; }
+  .modal-steps {
+    display: flex; gap: 0; margin-bottom: 2.5rem;
+    border-bottom: 2px solid rgba(0,0,0,0.08); padding-bottom: 1.2rem;
+  }
+  .modal-step {
+    flex: 1; text-align: center; font-size: 0.72rem;
+    font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(15,17,23,0.35); padding: 0.5rem;
+    position: relative;
+  }
+  .modal-step.active { color: var(--teal); }
+  .modal-step.done { color: var(--teal); opacity: 0.6; }
+  .modal-step-num {
+    display: block; width: 24px; height: 24px; border-radius: 50%;
+    border: 2px solid currentColor;
+    line-height: 20px; margin: 0 auto 0.3rem; font-size: 0.7rem;
+  }
+  .modal-step.active .modal-step-num { background: var(--teal); color: white; border-color: var(--teal); }
+  .modal-step.done .modal-step-num { background: var(--teal); color: white; border-color: var(--teal); }
+  .form-step { display: none; }
+  .form-step.active { display: block; }
+  .form-group { margin-bottom: 1.3rem; }
+  .form-label {
+    display: block; font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: rgba(15,17,23,0.6); margin-bottom: 0.45rem;
+  }
+  .form-input {
+    width: 100%; padding: 0.75rem 1rem;
+    border: 2px solid rgba(15,17,23,0.12);
+    border-radius: 3px; font-size: 0.95rem;
+    font-family: 'DM Sans', sans-serif;
+    outline: none; transition: border-color 0.2s;
+    background: white; color: var(--ink);
+  }
+  .form-input:focus { border-color: var(--teal); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-select {
+    width: 100%; padding: 0.75rem 1rem;
+    border: 2px solid rgba(15,17,23,0.12);
+    border-radius: 3px; font-size: 0.95rem;
+    font-family: 'DM Sans', sans-serif;
+    outline: none; background: white; color: var(--ink);
+    cursor: pointer; transition: border-color 0.2s;
+  }
+  .form-select:focus { border-color: var(--teal); }
+  .plan-selector {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1.3rem;
+  }
+  .plan-option {
+    border: 2px solid rgba(15,17,23,0.12);
+    border-radius: 3px; padding: 1rem; cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+  }
+  .plan-option input { position: absolute; opacity: 0; }
+  .plan-option.selected { border-color: var(--teal); background: rgba(26,95,110,0.06); }
+  .plan-option-name { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.2rem; }
+  .plan-option-price { font-size: 1.2rem; font-weight: 900; color: var(--teal); }
+  .plan-option-note { font-size: 0.72rem; color: var(--text-muted); }
+  .payment-box {
+    background: rgba(26,95,110,0.06); border: 1px solid rgba(26,95,110,0.2);
+    border-radius: 4px; padding: 1.2rem; margin-bottom: 1.5rem;
+  }
+  .payment-row {
+    display: flex; justify-content: space-between;
+    font-size: 0.88rem; margin-bottom: 0.4rem; color: rgba(15,17,23,0.7);
+  }
+  .payment-row.total {
+    font-size: 1rem; font-weight: 700; color: var(--ink);
+    border-top: 1px solid rgba(15,17,23,0.1);
+    padding-top: 0.7rem; margin-top: 0.5rem; margin-bottom: 0;
+  }
+  .card-icons { display: flex; gap: 0.5rem; margin-bottom: 1rem; opacity: 0.6; }
+  .card-icon {
+    background: rgba(15,17,23,0.1); border-radius: 2px;
+    padding: 0.2rem 0.5rem; font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .success-screen { display: none; text-align: center; padding: 2rem 0; }
+  .success-screen.show { display: block; }
+  .success-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+  .success-screen h2 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 0.6rem; }
+  .success-screen p { color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; }
+  .modal-nav {
+    display: flex; justify-content: space-between;
+    align-items: center; margin-top: 1.5rem; gap: 1rem;
+  }
+  .btn-back {
+    background: none; border: none; color: var(--text-muted);
+    font-size: 0.88rem; cursor: pointer; padding: 0;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-back:hover { color: var(--ink); }
+  .btn-next {
+    background: var(--teal); color: white; border: none;
+    padding: 0.8rem 2rem; border-radius: 3px;
+    font-size: 0.88rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-next:hover { background: var(--teal-light); }
+  .secured { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 1rem; }
+
+  /* ── FAQ ── */
+  .faq { background: var(--ink); }
+  .faq-list { max-width: 700px; margin-top: 3rem; }
+  .faq-item {
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 1.4rem 0; cursor: pointer;
+  }
+  .faq-q {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 1rem; font-weight: 600; gap: 1rem;
+  }
+  .faq-toggle { font-size: 1.3rem; color: var(--gold); flex-shrink: 0; transition: transform 0.2s; }
+  .faq-a {
+    font-size: 0.9rem; line-height: 1.7; color: rgba(245,240,232,0.6);
+    max-height: 0; overflow: hidden; transition: max-height 0.35s ease, margin 0.2s;
+    margin-top: 0;
+  }
+  .faq-item.open .faq-a { max-height: 200px; margin-top: 0.8rem; }
+  .faq-item.open .faq-toggle { transform: rotate(45deg); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #070810; color: rgba(245,240,232,0.5);
+    padding: 3rem; font-size: 0.82rem; line-height: 1.7;
+    display: flex; flex-wrap: wrap; gap: 2rem;
+    justify-content: space-between; align-items: flex-start;
+  }
+  .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 900; color: var(--gold); }
+  .footer-copy { margin-top: 0.3rem; }
+  .footer-links { display: flex; flex-direction: column; gap: 0.4rem; }
+  .footer-links a { color: rgba(245,240,232,0.5); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--cream); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a:not(.btn-enroll) { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+    .module-item { grid-template-columns: 2.5rem 1fr; }
+    .module-outcomes { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; padding: 2rem 1.5rem; }
+    .modal { padding: 2rem 1.5rem; }
+  }
+</style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#who-its-for">Who It's For</a></li>
-            <li><a href="#modules">Modules</a></li>
-            <li><a href="#journey-timeline">Journey Timeline</a></li>
-            <li><a href="#outcomes">Outcomes</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#footer">Contact</a></li>
-        </ul>
-    </nav>
 
-    <section id="hero">
-        <h1>Welcome to Impact Lab College Edition</h1>
-        <p>Transform your future with our innovative programs.</p>
-    </section>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">IMPACT LAB</div>
+  <div class="nav-links">
+    <a href="#modules">Programme</a>
+    <a href="#outcomes">Outcomes</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <button class="btn-enroll" onclick="openModal()">Enroll Now</button>
+  </div>
+</nav>
 
-    <section id="who-its-for">
-        <h2>Who It's For</h2>
-        <p>This program is designed for aspiring students who want to make a difference.</p>
-    </section>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Six-Month College Accelerator · 2026 Cohort</span>
+    <h1>Developed <em>by design.</em><br>Deployed on purpose.</h1>
+    <p class="hero-sub">
+      Impact Lab is an intensive six-month programme that bridges the gap between academic life and real-world readiness — equipping college students with the mindset, skills, and tools to thrive on campus and beyond.
+    </p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="openModal()">Apply for 2026 Cohort</button>
+      <button class="btn-outline" onclick="document.getElementById('modules').scrollIntoView({behavior:'smooth'})">Explore the Curriculum</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">6</div>
+        <div class="hero-stat-label">Months Intensive</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">6</div>
+        <div class="hero-stat-label">Core Modules</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">8+</div>
+        <div class="hero-stat-label">Portfolio Deliverables</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="modules">
-        <h2>Modules</h2>
-        <ul>
-            <li>Module 1: Introduction</li>
-            <li>Module 2: Intermediate Skills</li>
-            <li>Module 3: Advanced Concepts</li>
-        </ul>
-    </section>
+<!-- WHO IT'S FOR -->
+<section class="who">
+  <div class="section-eyebrow">Who This Is For</div>
+  <div class="section-title">Built for students at the threshold</div>
+  <p class="section-lead">Whether you're about to start university or already navigating campus life, Impact Lab meets you where you are.</p>
+  <div class="who-grid">
+    <div class="who-card">
+      <div class="who-card-icon">🎓</div>
+      <h3>Incoming Freshmen</h3>
+      <p>Preparing to start your college journey and want more than orientation week gives you.</p>
+    </div>
+    <div class="who-card">
+      <div class="who-card-icon">📚</div>
+      <h3>Current Undergraduates</h3>
+      <p>Already in school but feeling unprepared for the professional world waiting on the other side.</p>
+    </div>
+    <div class="who-card">
+      <div class="who-card-icon">💡</div>
+      <h3>Ambitious Self-Starters</h3>
+      <p>Students who want to build a business, a career, or a life — and need the frameworks to do it.</p>
+    </div>
+    <div class="who-card">
+      <div class="who-card-icon">🌍</div>
+      <h3>Purpose-Driven Leaders</h3>
+      <p>Young people who sense they have something meaningful to contribute and need the clarity to act.</p>
+    </div>
+  </div>
+</section>
 
-    <section id="journey-timeline">
-        <h2>Journey Timeline</h2>
-        <p>Your journey starts here and progresses through various milestones.</p>
-    </section>
+<!-- MODULES -->
+<section class="modules" id="modules">
+  <div class="modules-intro">
+    <div class="section-eyebrow">The Curriculum</div>
+    <div class="section-title">Six modules. Every dimension of readiness.</div>
+    <p class="section-lead">Each module runs across multiple weeks with live workshops, individual coaching, industry speaker sessions, and real deliverables you keep.</p>
+  </div>
+  <div class="module-list">
 
-    <section id="outcomes">
-        <h2>Outcomes</h2>
-        <p>By the end of this program, you will be equipped with essential skills.</p>
-    </section>
-
-    <section id="pricing">
-        <h2>Pricing</h2>
-        <p>We offer competitive pricing to make education accessible.</p>
-    </section>
-
-    <section id="faq">
-        <h2>FAQ</h2>
-        <p>Frequently asked questions about the program and enrollment.</p>
-    </section>
-
-    <footer id="footer">
-        <p>&copy; 2026 Impact Lab College Edition. All rights reserved.</p>
-    </footer>
-
-    <div id="enrollment-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <form id="enrollment-form">
-                <h2>Enrollment Form</h2>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-
-                <input type="submit" value="Enroll">
-            </form>
-        </div>
+    <div class="module-item">
+      <div class="module-num">01</div>
+      <div class="module-body">
+        <h3>Mindset & Personal Effectiveness</h3>
+        <p>Understand the paradigms shaping your behaviour. Build a personal mission statement, clarify your values, and develop proactive habits that put you in control of your outcomes.</p>
+      </div>
+      <div class="module-outcomes">
+        <span class="module-tag">Personal Mission Statement</span>
+        <span class="module-tag">SMART Goals</span>
+        <span class="module-tag">Prioritisation System</span>
+      </div>
     </div>
 
-    <script>
-        const modal = document.getElementById('enrollment-modal');
-        const closeButton = document.querySelector('.close-button');
+    <div class="module-item">
+      <div class="module-num">02</div>
+      <div class="module-body">
+        <h3>Emotional Intelligence & Relationships</h3>
+        <p>Develop the self-awareness and interpersonal skills that formal education rarely teaches — empathy, communication, conflict navigation, and the ability to build trust quickly.</p>
+      </div>
+      <div class="module-outcomes">
+        <span class="module-tag">EQ Assessment</span>
+        <span class="module-tag">Communication Framework</span>
+        <span class="module-tag">Personal Development Plan</span>
+      </div>
+    </div>
 
-        // Open modal
-        function openModal() {
-            modal.style.display = 'block';
-        }
+    <div class="module-item">
+      <div class="module-num">03</div>
+      <div class="module-body">
+        <h3>Identity, Wellness & Resilience</h3>
+        <p>Explore who you are at your core — your values, your worth, your mental health. Build tools for navigating stress, relationships, and the emotional terrain of college life with confidence.</p>
+      </div>
+      <div class="module-outcomes">
+        <span class="module-tag">Personal Wellness Plan</span>
+        <span class="module-tag">Resilience Toolkit</span>
+        <span class="module-tag">Healthy Relationship Framework</span>
+      </div>
+    </div>
 
-        // Close modal
-        closeButton.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
+    <div class="module-item">
+      <div class="module-num">04</div>
+      <div class="module-body">
+        <h3>Entrepreneurial Thinking & Business Skills</h3>
+        <p>Move from consumer to creator. Learn to spot opportunities, understand customer needs, write a simple business plan, cost and price your work, and make your first pitch with confidence.</p>
+      </div>
+      <div class="module-outcomes">
+        <span class="module-tag">Business Plan</span>
+        <span class="module-tag">Pitch Deck</span>
+        <span class="module-tag">Costing Exercise</span>
+      </div>
+    </div>
 
-        // Close modal when clicking outside
-        window.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-    </script>
+    <div class="module-item">
+      <div class="module-num">05</div>
+      <div class="module-body">
+        <h3>Digital Presence, Marketing & Professionalism</h3>
+        <p>Build the digital reputation that opens doors. Create your CV, LinkedIn, and portfolio. Master professional communication, understand workplace expectations, and learn to market yourself.</p>
+      </div>
+      <div class="module-outcomes">
+        <span class="module-tag">Digital Portfolio</span>
+        <span class="module-tag">LinkedIn Profile</span>
+        <span class="module-tag">Professional CV</span>
+      </div>
+    </div>
+
+    <div class="module-item">
+      <div class="module-num">06</div>
+      <div class="module-body">
+        <h3>Personal Finance & Money Mastery</h3>
+        <p>Learn to manage money before money manages you. Budgeting, saving, goal-setting, avoiding debt traps, and building the financial habits that create long-term stability.</p>
+      </div>
+      <div class="module-outcomes">
+        <span class="module-tag">Monthly Budget Template</span>
+        <span class="module-tag">90-Day Finance Plan</span>
+        <span class="module-tag">Savings Goal Charter</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- JOURNEY TIMELINE -->
+<section class="journey">
+  <div class="section-eyebrow">Programme Structure</div>
+  <div class="section-title">Six months. Every stage designed with intention.</div>
+  <div class="journey-track">
+    <div class="journey-step active">
+      <div class="journey-step-label">Pre-Programme</div>
+      <div class="journey-step-title">Learner Profiling & Onboarding</div>
+      <div class="journey-step-duration">1 Week</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-step-label">Month 1</div>
+      <div class="journey-step-title">Mindset & Personal Effectiveness</div>
+      <div class="journey-step-duration">4 Weeks</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-step-label">Month 2</div>
+      <div class="journey-step-title">Emotional Intelligence & Relationships</div>
+      <div class="journey-step-duration">4 Weeks</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-step-label">Month 3</div>
+      <div class="journey-step-title">Identity, Wellness & Resilience</div>
+      <div class="journey-step-duration">4 Weeks</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-step-label">Month 4</div>
+      <div class="journey-step-title">Entrepreneurial Thinking</div>
+      <div class="journey-step-duration">4 Weeks</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-step-label">Month 5</div>
+      <div class="journey-step-title">Digital Presence & Professionalism</div>
+      <div class="journey-step-duration">4 Weeks</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-step-label">Month 6</div>
+      <div class="journey-step-title">Personal Finance & Graduation</div>
+      <div class="journey-step-duration">4 Weeks</div>
+    </div>
+    <div class="journey-step">
+      <div class="journey-step-label">Close</div>
+      <div class="journey-step-title">Exhibition, Ceremony & Launch</div>
+      <div class="journey-step-duration">1 Week</div>
+    </div>
+  </div>
+  <div class="journey-includes">
+    <h4>Every Module Includes</h4>
+    <div class="includes-pills">
+      <span class="includes-pill">Weekly Live Workshops</span>
+      <span class="includes-pill">Individual Coaching Sessions</span>
+      <span class="includes-pill">Industry Leader Talks (3 per module)</span>
+      <span class="includes-pill">Community Outreach Project</span>
+      <span class="includes-pill">Real Deliverables You Keep</span>
+      <span class="includes-pill">Peer Cohort Community</span>
+      <span class="includes-pill">Progress Assessments</span>
+      <span class="includes-pill">Post-Programme Alumni Network</span>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="outcomes" id="outcomes">
+  <div class="section-eyebrow">What You Walk Away With</div>
+  <div class="section-title">Outcomes that matter for real life</div>
+  <div class="outcomes-grid">
+    <div class="outcome-card">
+      <div class="outcome-num">8+</div>
+      <div class="outcome-label">Tangible portfolio deliverables — PDP, CV, Business Plan, Budget Plan, Digital Portfolio, Wellness Plan & more</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-num">6</div>
+      <div class="outcome-label">Certified modules with formal recognition across personal, professional, entrepreneurial and financial areas</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-num">18+</div>
+      <div class="outcome-label">Hours of direct access to industry professionals through curated speaker sessions across the programme</div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-num">1</div>
+      <div class="outcome-label">Coaching relationship — a certified coach working alongside you through the entire six months</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-eyebrow">Investment</div>
+  <div class="section-title">Transparent pricing. Real value.</div>
+  <p class="section-lead">Choose the plan that works for your situation. Every tier accesses the full curriculum.</p>
+  <div class="pricing-cards">
+    <div class="pricing-card">
+      <div class="pricing-name">Standard</div>
+      <div class="pricing-price"><span>$</span>249</div>
+      <div class="pricing-period">one-time payment · full programme access</div>
+      <ul class="pricing-features">
+        <li>All 6 curriculum modules</li>
+        <li>Live weekly workshops</li>
+        <li>3 industry speaker sessions per module</li>
+        <li>Community outreach projects</li>
+        <li>All portfolio deliverables</li>
+        <li>Completion certificate</li>
+      </ul>
+      <button class="btn-teal-outline" onclick="openModal('standard')">Enroll — Standard</button>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-badge">Most Popular</div>
+      <div class="pricing-name">Full Experience</div>
+      <div class="pricing-price"><span>$</span>399</div>
+      <div class="pricing-period">one-time payment · everything included</div>
+      <ul class="pricing-features">
+        <li>Everything in Standard</li>
+        <li>4 individual coaching sessions</li>
+        <li>Personal Development Plan review</li>
+        <li>Business plan feedback</li>
+        <li>Priority cohort placement</li>
+        <li>Alumni network access (1 year)</li>
+        <li>Post-programme career support</li>
+      </ul>
+      <button class="btn-teal" onclick="openModal('full')">Enroll — Full Experience</button>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-name">Pay Monthly</div>
+      <div class="pricing-price"><span>$</span>75</div>
+      <div class="pricing-period">per month · 6-month commitment</div>
+      <ul class="pricing-features">
+        <li>All 6 curriculum modules</li>
+        <li>Live weekly workshops</li>
+        <li>Industry speaker sessions</li>
+        <li>Portfolio deliverables</li>
+        <li>Completion certificate</li>
+        <li>Flexible payment schedule</li>
+      </ul>
+      <button class="btn-teal-outline" onclick="openModal('monthly')">Enroll — Monthly Plan</button>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="section-eyebrow">Common Questions</div>
+  <div class="section-title">What you might be wondering</div>
+  <div class="faq-list">
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span>Do I need to be in college to join?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">Impact Lab is designed for students who are entering college or currently enrolled. If you're in your final year of secondary school and heading to university, you're also a great fit. We accept applications on a rolling basis subject to cohort availability.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span>How much time does it require each week?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">Expect to invest 6–8 hours per week. This includes live workshop sessions (typically 2–3 sessions per week), self-directed assignments, coaching check-ins, and community engagement. The programme is designed to be rigorous but manageable alongside your studies.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span>Is the programme delivered online or in person?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">The 2026 cohort is delivered in a hybrid format — live online sessions with optional in-person intensives at key milestones (onboarding, mid-point, and graduation). You'll need a reliable internet connection and a device to participate fully.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span>What deliverables will I actually produce?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">By graduation you'll have produced: a Personal Mission Statement, a Personal Development Plan (PDP), a professional CV, a LinkedIn profile, a digital portfolio, a simple business plan and pitch, a personal budget template with a 90-day finance plan, and a personal wellness plan. These aren't just exercises — they're tools you carry into real life.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span>Can I get a refund if the programme isn't right for me?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">We offer a full refund within the first 7 days of the programme if you decide it's not the right fit. After that, we do not offer refunds but you may defer to the next cohort (subject to availability and a deferral fee of $30).</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span>What if I can't afford the full fee?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">We offer the monthly payment plan for exactly this reason. We also have a limited number of partial scholarships available for students with demonstrated financial need — reach out to us directly at admissions@impactlab.co to inquire before applying.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">IMPACT LAB</div>
+    <div class="footer-copy">© 2026 Impact Lab. All rights reserved.<br>Developed by Design. Deployed on Purpose.</div>
+  </div>
+  <div class="footer-links">
+    <a href="#">About</a>
+    <a href="#modules">Programme</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#">Contact</a>
+    <a href="#">Privacy Policy</a>
+  </div>
+  <div style="font-size:0.8rem; color:rgba(245,240,232,0.35); max-width:220px; line-height:1.6;">
+    Questions? Email us at<br>
+    <a href="mailto:admissions@impactlab.co" style="color:var(--gold);text-decoration:none;">admissions@impactlab.co</a>
+  </div>
+</footer>
+
+<!-- ENROLLMENT MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+
+    <!-- SUCCESS SCREEN -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">🎉</div>
+      <h2>You're in!</h2>
+      <p>Welcome to Impact Lab 2026. Check your email for your confirmation and onboarding instructions. We'll be in touch within 48 hours.</p>
+      <button class="btn-teal" onclick="closeModal()" style="width:auto;padding:0.8rem 2rem;">Done</button>
+    </div>
+
+    <!-- FORM -->
+    <div id="formContent">
+      <h2>Enroll in Impact Lab</h2>
+      <p class="modal-sub">Six months. Eight deliverables. One transformed student. Let's get you started.</p>
+
+      <div class="modal-steps">
+        <div class="modal-step active" id="step-ind-1">
+          <span class="modal-step-num">1</span>About You
+        </div>
+        <div class="modal-step" id="step-ind-2">
+          <span class="modal-step-num">2</span>Your Plan
+        </div>
+        <div class="modal-step" id="step-ind-3">
+          <span class="modal-step-num">3</span>Payment
+        </div>
+      </div>
+
+      <!-- STEP 1 -->
+      <div class="form-step active" id="formStep1">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input class="form-input" type="text" id="firstName" placeholder="Your first name"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input class="form-input" type="text" id="lastName" placeholder="Your last name"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" id="email" placeholder="you@example.com"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <input class="form-input" type="tel" id="phone" placeholder="+1 (555) 000 0000"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Current Status</label>
+          <select class="form-select" id="status">
+            <option value="">Select your status...</option>
+            <option>Incoming college freshman</option>
+            <option>1st year undergraduate</option>
+            <option>2nd year undergraduate</option>
+            <option>3rd year undergraduate</option>
+            <option>4th year / final year</option>
+            <option>Graduate student</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Institution (or planned)</label>
+          <input class="form-input" type="text" id="school" placeholder="University / College name"/>
+        </div>
+        <div class="modal-nav">
+          <span></span>
+          <button class="btn-next" onclick="goToStep(2)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="form-step" id="formStep2">
+        <label class="form-label" style="margin-bottom:0.8rem;">Choose Your Plan</label>
+        <div class="plan-selector">
+          <label class="plan-option" id="planStandard" onclick="selectPlan('standard',249,'Standard')">
+            <input type="radio" name="plan" value="standard"/>
+            <div class="plan-option-name">Standard</div>
+            <div class="plan-option-price">$249</div>
+            <div class="plan-option-note">One-time · Full access</div>
+          </label>
+          <label class="plan-option" id="planFull" onclick="selectPlan('full',399,'Full Experience')">
+            <input type="radio" name="plan" value="full"/>
+            <div class="plan-option-name">Full Experience</div>
+            <div class="plan-option-price">$399</div>
+            <div class="plan-option-note">One-time · + Coaching</div>
+          </label>
+          <label class="plan-option" id="planMonthly" onclick="selectPlan('monthly',75,'Monthly Plan')">
+            <input type="radio" name="plan" value="monthly"/>
+            <div class="plan-option-name">Monthly</div>
+            <div class="plan-option-price">$75<span style="font-size:0.7rem;font-weight:400;">/mo</span></div>
+            <div class="plan-option-note">6 months · $450 total</div>
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="form-label">How did you hear about Impact Lab?</label>
+          <select class="form-select">
+            <option value="">Select one...</option>
+            <option>Social media</option>
+            <option>Friend / peer referral</option>
+            <option>School / lecturer</option>
+            <option>Online search</option>
+            <option>Event or conference</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">What are you hoping to achieve? (optional)</label>
+          <textarea class="form-input" rows="3" style="resize:vertical;" placeholder="Tell us a little about your goals..."></textarea>
+        </div>
+        <div class="modal-nav">
+          <button class="btn-back" onclick="goToStep(1)">← Back</button>
+          <button class="btn-next" onclick="goToStep(3)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="form-step" id="formStep3">
+        <div class="payment-box">
+          <div class="payment-row"><span>Plan</span><span id="summaryPlan">—</span></div>
+          <div class="payment-row"><span>Amount</span><span id="summaryAmount">—</span></div>
+          <div class="payment-row total"><span>Total Due Today</span><span id="summaryTotal">—</span></div>
+        </div>
+        <div class="card-icons">
+          <span class="card-icon">VISA</span>
+          <span class="card-icon">MC</span>
+          <span class="card-icon">AMEX</span>
+          <span class="card-icon">PayPal</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Name on Card</label>
+          <input class="form-input" type="text" placeholder="Full name as on card"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Card Number</label>
+          <input class="form-input" type="text" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCard(this)"/>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Expiry</label>
+            <input class="form-input" type="text" placeholder="MM / YY" maxlength="7"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">CVV</label>
+            <input class="form-input" type="text" placeholder="123" maxlength="4"/>
+          </div>
+        </div>
+        <div class="modal-nav">
+          <button class="btn-back" onclick="goToStep(2)">← Back</button>
+          <button class="btn-next" onclick="submitEnrollment()" style="background:var(--rust);">Complete Enrollment</button>
+        </div>
+        <p class="secured">🔒 Payments are processed securely. Your information is protected.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* Modal */
+  let selectedPlan = { key: 'full', price: 399, name: 'Full Experience' };
+  let currentStep = 1;
+
+  function openModal(plan) {
+    if (plan) {
+      const plans = {
+        standard: { key:'standard', price:249, name:'Standard' },
+        full: { key:'full', price:399, name:'Full Experience' },
+        monthly: { key:'monthly', price:75, name:'Monthly Plan' }
+      };
+      if (plans[plan]) selectedPlan = plans[plan];
+    }
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    goToStep(1);
+    // pre-select plan
+    ['standard','full','monthly'].forEach(p => document.getElementById('plan'+p.charAt(0).toUpperCase()+p.slice(1))?.classList.remove('selected'));
+    const el = document.getElementById('plan'+selectedPlan.key.charAt(0).toUpperCase()+selectedPlan.key.slice(1));
+    if (el) el.classList.add('selected');
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+    document.getElementById('successScreen').classList.remove('show');
+    document.getElementById('formContent').style.display = '';
+    currentStep = 1;
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  function goToStep(n) {
+    currentStep = n;
+    [1,2,3].forEach(i => {
+      document.getElementById('formStep'+i)?.classList.toggle('active', i===n);
+      const ind = document.getElementById('step-ind-'+i);
+      if (ind) {
+        ind.classList.remove('active','done');
+        if (i===n) ind.classList.add('active');
+        else if (i<n) ind.classList.add('done');
+      }
+    });
+    if (n===3) {
+      const plan = selectedPlan;
+      document.getElementById('summaryPlan').textContent = plan.name;
+      document.getElementById('summaryAmount').textContent = plan.key==='monthly' ? `$${plan.price}/month` : `$${plan.price}`;
+      document.getElementById('summaryTotal').textContent = plan.key==='monthly' ? `$${plan.price}` : `$${plan.price}`;
+    }
+  }
+
+  function selectPlan(key, price, name) {
+    selectedPlan = {key, price, name};
+    ['standard','full','monthly'].forEach(p => document.getElementById('plan'+p.charAt(0).toUpperCase()+p.slice(1))?.classList.remove('selected'));
+    document.getElementById('plan'+key.charAt(0).toUpperCase()+key.slice(1))?.classList.add('selected');
+  }
+
+  function submitEnrollment() {
+    // Demo: show success screen
+    document.getElementById('formContent').style.display = 'none';
+    document.getElementById('successScreen').classList.add('show');
+  }
+
+  function formatCard(input) {
+    let v = input.value.replace(/\D/g,'').substring(0,16);
+    input.value = v.replace(/(.{4})/g,'$1 ').trim();
+  }
+
+  /* FAQ */
+  function toggleFaq(el) {
+    const isOpen = el.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) el.classList.add('open');
+  }
+</script>
 </body>
 </html>
