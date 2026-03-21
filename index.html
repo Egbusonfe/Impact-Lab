@@ -275,6 +275,7 @@
   }
   .outcome-label { font-size: 0.88rem; line-height: 1.5; margin-top: 0.4rem; opacity: 0.85; }
 
+  
   /* ── PRICING ── */
   .pricing { background: var(--cream); color: var(--ink); }
   .pricing .section-eyebrow { color: var(--teal); }
@@ -473,6 +474,7 @@
   .btn-next:hover { background: var(--teal-light); }
   .secured { font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 1rem; }
 
+  
   /* ── FAQ ── */
   .faq { background: var(--ink); }
   .faq-list { max-width: 700px; margin-top: 3rem; }
@@ -520,6 +522,49 @@
     footer { flex-direction: column; padding: 2rem 1.5rem; }
     .modal { padding: 2rem 1.5rem; }
   }
+
+  /* ── FACULTY ── */
+  .faculty { background: var(--ink); }
+  .faculty-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.2rem; margin-top: 3rem;
+  }
+  .faculty-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .faculty-card:hover {
+    border-color: rgba(201,149,42,0.4);
+    transform: translateY(-3px);
+  }
+  .faculty-info {
+    padding: 1.4rem 1.5rem 1.6rem;
+    display: flex; flex-direction: column; flex: 1;
+  }
+  .faculty-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--cream); margin: 0 0 0.25rem; line-height: 1.3;
+  }
+  .faculty-role {
+    font-size: 0.78rem; color: rgba(245,240,232,0.55);
+    margin: 0 0 1rem; line-height: 1.4; flex: 1;
+  }
+  .faculty-li {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em;
+    color: var(--teal-light);
+    border: 1px solid rgba(42,143,163,0.4);
+    padding: 0.35rem 0.8rem; border-radius: 2px;
+    text-decoration: none; align-self: flex-start;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .faculty-li:hover { background: rgba(42,143,163,0.12); border-color: var(--teal-light); }
+
 </style>
 </head>
 <body>
@@ -530,6 +575,7 @@
   <div class="nav-links">
     <a href="#modules">Programme</a>
     <a href="#outcomes">Outcomes</a>
+    <a href="#faculty">Faculty</a>
     <a href="#pricing">Pricing</a>
     <a href="#faq">FAQ</a>
     <button class="btn-enroll" onclick="openModal()">Enroll Now</button>
@@ -771,6 +817,7 @@
   </div>
 </section>
 
+
 <!-- PRICING -->
 <section class="pricing" id="pricing">
   <div class="section-eyebrow">Investment</div>
@@ -820,6 +867,71 @@
         <li>Flexible payment schedule</li>
       </ul>
       <button class="btn-teal-outline" onclick="openModal('monthly')">Enroll — Monthly Plan</button>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FACULTY -->
+<section class="faculty" id="faculty">
+  <div class="section-eyebrow">Meet the Team</div>
+  <div class="section-title">Our Faculty</div>
+  <p class="section-lead">Practitioners, coaches, and educators who have lived what they teach — across East Africa, the US, and beyond.</p>
+  <div class="faculty-grid">
+    <div class="faculty-card">
+      <div class="faculty-info">
+        <p class="faculty-name">Francis Egbuson</p>
+        <p class="faculty-role">Managing Director &amp; Lead Facilitator</p>
+        <a class="faculty-li" href="https://www.linkedin.com/in/francisegbuson/" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn
+        </a>
+      </div>
+    </div>
+    <div class="faculty-card">
+      <div class="faculty-info">
+        <p class="faculty-name">Ayele Rwayitare Egbuson</p>
+        <p class="faculty-role">CFO &amp; Education Practice Lead</p>
+        <a class="faculty-li" href="https://www.linkedin.com/in/ayele-rwayitare-egbuson-7452988/" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn
+        </a>
+      </div>
+    </div>
+    <div class="faculty-card">
+      <div class="faculty-info">
+        <p class="faculty-name">Boba Kabaramagi</p>
+        <p class="faculty-role">Deputy MD &amp; Senior Facilitator</p>
+        <a class="faculty-li" href="https://www.linkedin.com/in/boba-kabaramagi-68915a46" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn
+        </a>
+      </div>
+    </div>
+    <div class="faculty-card">
+      <div class="faculty-info">
+        <p class="faculty-name">Esther Choda</p>
+        <p class="faculty-role">Educational Leadership Consultant</p>
+        <a class="faculty-li" href="https://www.linkedin.com/in/esther-choda-944033242" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn
+        </a>
+      </div>
+    </div>
+    <div class="faculty-card">
+      <div class="faculty-info">
+        <p class="faculty-name">Evan Lambert</p>
+        <p class="faculty-role">Executive Coach, Thynk Coaching</p>
+        <a class="faculty-li" href="https://www.linkedin.com/in/evan-lambert-b1983b318" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn
+        </a>
+      </div>
+    </div>
+    <div class="faculty-card">
+      <div class="faculty-info">
+        <p class="faculty-name">David Oyena</p>
+        <p class="faculty-role">ICF Certified Coach &amp; L&amp;D Specialist</p>
+        <a class="faculty-li" href="https://www.linkedin.com/in/david-oyena-acc-mal-pgd-b0b22586" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -875,7 +987,7 @@
         <span>What if I can't afford the full fee?</span>
         <span class="faq-toggle">+</span>
       </div>
-      <div class="faq-a">We offer the monthly payment plan for exactly this reason. We also have a limited number of partial scholarships available for students with demonstrated financial need — reach out to us directly at admissions@impactlab.co to inquire before applying.</div>
+      <div class="faq-a">We offer the monthly payment plan for exactly this reason. We also have a limited number of partial scholarships available for students with demonstrated financial need — reach out to us directly at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="650401080c16160c0a0b16250c08150406110904074b060a">[email&#160;protected]</a> to inquire before applying.</div>
     </div>
 
   </div>
@@ -896,7 +1008,7 @@
   </div>
   <div style="font-size:0.8rem; color:rgba(245,240,232,0.35); max-width:220px; line-height:1.6;">
     Questions? Email us at<br>
-    <a href="mailto:admissions@impactlab.co" style="color:var(--gold);text-decoration:none;">admissions@impactlab.co</a>
+    <a href="/cdn-cgi/l/email-protection#d1b0b5bcb8a2a2b8bebfa291b8bca1b0b2a5bdb0b3ffb2be" style="color:var(--gold);text-decoration:none;"><span class="__cf_email__" data-cfemail="5130353c382222383e3f2211383c213032253d30337f323e">[email&#160;protected]</span></a>
   </div>
 </footer>
 
@@ -1058,7 +1170,7 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   /* Modal */
   let selectedPlan = { key: 'full', price: 399, name: 'Full Experience' };
   let currentStep = 1;
@@ -1124,17 +1236,4 @@
     document.getElementById('successScreen').classList.add('show');
   }
 
-  function formatCard(input) {
-    let v = input.value.replace(/\D/g,'').substring(0,16);
-    input.value = v.replace(/(.{4})/g,'$1 ').trim();
-  }
-
-  /* FAQ */
-  function toggleFaq(el) {
-    const isOpen = el.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!isOpen) el.classList.add('open');
-  }
-</script>
-</body>
-</html>
+  function formatC
