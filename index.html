@@ -276,67 +276,49 @@
   .outcome-label { font-size: 0.88rem; line-height: 1.5; margin-top: 0.4rem; opacity: 0.85; }
 
   
-  /* ── PRICING ── */
-  .pricing { background: var(--cream); color: var(--ink); }
-  .pricing .section-eyebrow { color: var(--teal); }
-  .pricing-cards {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem; margin-top: 3rem; max-width: 900px;
-  }
-  .pricing-card {
-    background: white; border-radius: 4px; padding: 2.5rem;
-    border: 2px solid transparent;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-    position: relative; transition: transform 0.2s;
-  }
-  .pricing-card:hover { transform: translateY(-4px); }
-  .pricing-card.featured {
-    border-color: var(--teal);
-    box-shadow: 0 4px 32px rgba(26,95,110,0.2);
-  }
-  .pricing-badge {
-    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-    background: var(--teal); color: white;
-    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; padding: 0.3rem 1rem; border-radius: 2px;
-    white-space: nowrap;
-  }
-  .pricing-name {
-    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--teal); margin-bottom: 0.8rem;
-  }
-  .pricing-price {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem; font-weight: 900; line-height: 1;
-    margin-bottom: 0.3rem;
-  }
-  .pricing-price span { font-size: 1.2rem; vertical-align: top; margin-top: 0.5rem; display: inline-block; }
-  .pricing-period { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.5rem; }
-  .pricing-features { list-style: none; margin-bottom: 2rem; }
-  .pricing-features li {
-    display: flex; gap: 0.6rem; align-items: flex-start;
-    font-size: 0.88rem; line-height: 1.5; margin-bottom: 0.7rem;
-    color: rgba(15,17,23,0.75);
-  }
-  .pricing-features li::before { content: "✓"; color: var(--teal); font-weight: 700; flex-shrink: 0; }
-  .btn-teal {
-    width: 100%; background: var(--teal); color: white;
-    padding: 0.85rem; font-size: 0.9rem; font-weight: 700;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    border: none; border-radius: 2px; cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-  }
-  .btn-teal:hover { background: var(--teal-light); transform: translateY(-1px); }
-  .btn-teal-outline {
-    width: 100%; background: transparent; color: var(--teal);
-    border: 2px solid var(--teal);
-    padding: 0.85rem; font-size: 0.9rem; font-weight: 700;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    border-radius: 2px; cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-  }
-  .btn-teal-outline:hover { background: var(--teal); color: white; }
-
+  <!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-eyebrow">Investment</div>
+  <div class="section-title">Transparent pricing. Real value.</div>
+  <p class="section-lead">Choose the plan that works for your situation. Every tier accesses the full curriculum.</p>
+ 
+  <div class="pricing-cards" style="max-width:660px;">
+ 
+    <div class="pricing-card featured">
+      <div class="pricing-badge">Most Popular</div>
+      <div class="pricing-name">Full Experience</div>
+      <div class="pricing-price"><span>$</span>150</div>
+      <div class="pricing-period">one-time payment · everything included</div>
+      <ul class="pricing-features">
+        <li>All 6 curriculum modules</li>
+        <li>Live weekly workshops</li>
+        <li>4 individual coaching sessions</li>
+        <li>Personal Development Plan review</li>
+        <li>Business plan feedback</li>
+        <li>Priority cohort placement</li>
+        <li>Alumni network access (1 year)</li>
+        <li>Post-programme career support</li>
+      </ul>
+      <button class="btn-teal" onclick="openModal('full')">Enroll — Full Experience</button>
+    </div>
+ 
+    <div class="pricing-card">
+      <div class="pricing-name">Pay Monthly</div>
+      <div class="pricing-price"><span>$</span>30</div>
+      <div class="pricing-period">per month · 6-month commitment</div>
+      <ul class="pricing-features">
+        <li>All 6 curriculum modules</li>
+        <li>Live weekly workshops</li>
+        <li>Industry speaker sessions</li>
+        <li>Portfolio deliverables</li>
+        <li>Completion certificate</li>
+        <li>Flexible payment schedule</li>
+      </ul>
+      <button class="btn-teal-outline" onclick="openModal('monthly')">Enroll — Monthly Plan</button>
+    </div>
+ 
+  </div>
+</section>
   /* ── MODAL OVERLAY ── */
   .modal-overlay {
     display: none; position: fixed; inset: 0;
